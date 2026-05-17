@@ -1,0 +1,21 @@
+services:
+  backend:
+    networks:
+      - app_network
+    build:
+      context: .
+    container_name: arcgis_backend
+    restart: unless-stopped
+
+    env_file:
+      - .env
+
+    ports:
+      - "127.0.0.1:8000:8000"
+
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+
+networks:
+  app_network:
+    external: true
