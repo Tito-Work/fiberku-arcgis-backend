@@ -13,6 +13,7 @@ A comprehensive FastAPI backend for managing network infrastructure with spatial
 
 ### Authentication & Security
 - **JWT Authentication** with secure token-based access
+- **Refresh Token Mechanism** with automatic token renewal (access: 30 min, refresh: 7 days)
 - **Role-Based Access Control (RBAC)** with granular permissions
 - **Password Hashing** using bcrypt for secure credential storage
 - **CORS** middleware for cross-origin requests
@@ -117,7 +118,9 @@ arcgis-backend/
 ### Authentication
 | Method | Endpoint | Description |
 |--------|----------|-------------|
-| POST | `/api/v1/auth/login` | User login and JWT token generation |
+| POST | `/api/v1/auth/login` | User login (returns access_token + refresh_token) |
+| POST | `/api/v1/auth/refresh` | Refresh access token using refresh token |
+| POST | `/api/v1/auth/logout` | User logout |
 | POST | `/api/v1/auth/check-permission` | Verify user permissions |
 
 ### User Management
